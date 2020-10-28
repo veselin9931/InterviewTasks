@@ -10,7 +10,7 @@ namespace Market_Store
         public static bool Validate(string input)
         {
             var isNumber = input.All<char>(a => char.IsNumber(a));
-            return String.IsNullOrEmpty(input) && isNumber;
+            return !String.IsNullOrEmpty(input) && isNumber;
         }
     }
 }

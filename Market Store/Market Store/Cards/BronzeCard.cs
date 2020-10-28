@@ -7,19 +7,31 @@ namespace Market_Store.Cards
 {
     public class BronzeCard : Card
     {
-        public override decimal Discount()
+        public BronzeCard(decimal p, decimal t) : base(p)
         {
-            throw new NotImplementedException();
+            this.PrevTurnover = t;
+            this.DiscountRate();
         }
 
         public override decimal DiscountRate()
         {
-            throw new NotImplementedException();
-        }
+            if (PrevTurnover > 300 )
+            {
+                this.DiscauntRate = 2.5M;
+            }
+            else if (PrevTurnover >= 100 && PrevTurnover <= 300)
+            {
+                this.DiscauntRate = 1;
+            }
 
-        public override decimal TotalPurchase()
+            return this.DiscauntRate;
+        }
+        public override void Print()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Purchase value: ${this.purchase}");
+            Console.WriteLine($"Discount rate: ${this.DiscauntRate}");
+            Console.WriteLine($"Discount: ${this.Discount(purchase)}");
+            Console.WriteLine($"Total: ${this.TotalPurchase()}");
         }
     }
 }

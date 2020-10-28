@@ -6,19 +6,29 @@ namespace Market_Store.Cards
 {
     public class SilverCard : Card
     {
-        public override decimal Discount()
+        public SilverCard(decimal p, decimal t) : base(p)
         {
-            throw new NotImplementedException();
+            this.PrevTurnover = t;
+            this.DiscountRate();
         }
 
         public override decimal DiscountRate()
         {
-            throw new NotImplementedException();
-        }
+            this.DiscauntRate = 2;
+          
+            if (PrevTurnover > 300)
+            {
+                this.DiscauntRate = 3.5M;
+            }
 
-        public override decimal TotalPurchase()
+            return this.DiscauntRate;
+        }
+        public override void Print()
         {
-            throw new NotImplementedException();
+            Console.WriteLine($"Purchase value: ${this.purchase}");
+            Console.WriteLine($"Discount rate: ${this.DiscauntRate}");
+            Console.WriteLine($"Discount: ${this.Discount(purchase)}");
+            Console.WriteLine($"Total: ${this.TotalPurchase()}");
         }
     }
 }

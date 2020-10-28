@@ -1,27 +1,71 @@
-﻿using System;
+﻿using Market_Store.Cards;
+using Microsoft.VisualBasic;
+using System;
+using System.Threading;
 
 namespace Market_Store
 {
     class MarketStore
     {
+        public static string turnoverInput;
+
+        public static string purchaseInput;
+
+        public static string type;
+
         static void Main(string[] args)
         {
-            Console.WriteLine("What is the turnover at the moment?");
+            Read();
+
+            while (true)
+            {
+                if (turnoverInput == "END")
+                {
+                    break;
+                };
+
+                if (Validator.Validate(purchaseInput) && Validator.Validate(turnoverInput))
+                {
+                    var purchase = decimal.Parse(purchaseInput);
+                    var turnover = decimal.Parse(turnoverInput);
+                    Card card;
+                    if (type == "bronze")
+                    {
+                        card = new BronzeCard(purchase, turnover);
+                    }
+                    else if(type == "silver")
+                    {
+                        card = new SilverCard(purchase, turnover);
+                    }
+                    else if (type == "gold")
+                    {
+                        card = new GoldCard(purchase, turnover);
+                    }
+                    else
+                    {
+                        throw new InvalidOperationException("Invalid type of Card");
+                    }
+
+                    card.Print();
+                    Thread.Sleep(50000);
+                    Read();
+                }
+            }
+        }
+
+        public static void Read()
+        {
+            Console.WriteLine("What is the turnover? or END");
             Console.Write("Value: ");
-            var turnoverInput = Console.ReadLine();
+            turnoverInput = Console.ReadLine();
 
             Console.WriteLine("What is the purchase at the moment?");
             Console.Write("Value: ");
-            var purchaseInput = Console.ReadLine();
+            purchaseInput = Console.ReadLine();
 
-            if (Validator.Validate(purchaseInput) && Validator.Validate(turnoverInput))
-            {
-                var purchase = decimal.Parse(purchaseInput);
-                var turnover = decimal.Parse(turnoverInput);
-
-
-
-            }
+            Console.WriteLine("What is the type of cart?");
+            Console.Write("Value (bronze/gold/silver): ");
+            type = Console.ReadLine();
         }
     }
 }
