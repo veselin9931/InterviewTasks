@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Market_Store
+namespace Market_Store.Cards
 {
-    class Card
+    public abstract class Card
     {
+
+        public abstract decimal TotalPurchase();
+
+        public abstract decimal DiscountRate();
+
+        public abstract decimal Discount();
+
+
     }
 }
