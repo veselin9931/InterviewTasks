@@ -47,7 +47,6 @@ namespace Market_Store
                     }
 
                     card.Print();
-                    Thread.Sleep(50000);
                     Read();
                 }
             }

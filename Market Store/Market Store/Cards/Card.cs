@@ -38,7 +38,7 @@ namespace Market_Store.Cards
         }
         protected decimal Discount(decimal purchase)
         {
-            this.discount = purchase * this.DiscauntRate; ;
+            this.discount = (purchase * this.DiscauntRate) / 100 ;
             return discount;
         }
 

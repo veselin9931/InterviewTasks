@@ -22,7 +22,10 @@ namespace Market_Store.Cards
             }
 
             this.DiscauntRate = (int)PrevTurnover / 100;
-
+            if (this.DiscauntRate > 10)
+            {
+                this.DiscauntRate = 10;
+            }
             return this.DiscauntRate;
 
         }
